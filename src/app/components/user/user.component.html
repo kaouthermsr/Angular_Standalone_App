@@ -1,0 +1,19 @@
+<div class="container">
+    <h2>User Management</h2>
+    <div *ngIf="!isAuthenticated"> <!-- Login Form -->
+      <label>Email: </label>
+      <input [(ngModel)]="email" type="email" />
+      <label>Password: </label>
+      <input [(ngModel)]="password" type="password" />
+      <button class="btn btn-primary" (click)="authenticate()">Login</button>
+    </div>
+  
+    <div *ngIf="isAuthenticated"> <!-- Menu -->
+      <h3>Welcome, {{ email }}!</h3>
+      <div>
+        <!-- <button class="btn btn-info" routerLink="/users">Manage Users</button> -->
+        <button class="btn btn-info" routerLink="/products">Manage Products</button>
+      </div>
+    </div>
+  </div>
+  

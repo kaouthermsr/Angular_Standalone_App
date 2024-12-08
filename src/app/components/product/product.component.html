@@ -1,0 +1,46 @@
+<div class="container">
+  <h2>Product Management</h2>
+
+  <!-- Authenticated User Email -->
+  <label>User Email: </label>
+  <input [(ngModel)]="userEmail" type="email" readonly /> <!-- Unchangeable field -->
+
+  <!-- Product Menu Selection -->
+  <label>Select Action:</label>
+  <select [(ngModel)]="selectedAction" class="form-select">
+    <option value="1">Display All Products</option>
+    <option value="2">Fetch Product by ID</option>
+    <option value="3">Add Product</option>
+    <option value="4">Update Product</option>
+    <option value="5">Delete Product</option>
+    <option value="6">View 3 Most Expensive Products</option>
+  </select>
+
+  <div *ngIf="selectedAction === '2' || selectedAction === '4' || selectedAction === '5'">
+    <label>Product ID: </label>
+    <input [(ngModel)]="product.id" />
+  </div>
+
+  <div *ngIf="selectedAction === '3' || selectedAction === '4'">
+    <label>Product ID: </label>
+    <input [(ngModel)]="product.id" />
+    <label>Product Name: </label>
+    <input [(ngModel)]="product.name" />
+    <label>Product Price: </label>
+    <input [(ngModel)]="product.price" type="number" />
+    <label>Expiration Date: </label>
+    <input [(ngModel)]="product.expirationDate" type="date" />
+  </div>
+
+  <button class="btn btn-primary" (click)="handleMenuSelection()">Submit</button>
+
+  <!-- Display Products -->
+  <ul class="list-group mt-3" *ngIf="products.length > 0">
+    <li *ngFor="let product of products" class="list-group-item">
+      <strong>ID:</strong> {{ product.id }} | 
+      <strong>Name:</strong> {{ product.name }} | 
+      <strong>Price:</strong> ${{ product.price }} | 
+      <strong>Expiration Date:</strong> {{ product.expirationDate }}
+    </li>
+  </ul>
+</div>
